@@ -1,0 +1,451 @@
+/* =========================================================
+   F-US10 — GLOBAL ANIMATION SYSTEM
+   P01 — Scroll Reveal Foundation
+========================================================= */
+
+
+/* =========================================================
+   MOTION TOKENS
+========================================================= */
+
+:root {
+  --motion-fast: 0.35s;
+  --motion-normal: 0.65s;
+  --motion-slow: 0.9s;
+
+  --motion-ease:
+    cubic-bezier(0.22, 1, 0.36, 1);
+
+  --motion-ease-soft:
+    cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+
+/* =========================================================
+   GLOBAL SMOOTHNESS
+========================================================= */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+
+/* =========================================================
+   SECTION REVEAL
+========================================================= */
+
+/*
+   Sections begin slightly lower and transparent.
+
+   JavaScript will add .is-visible when the section
+   enters the viewport.
+*/
+
+main > section {
+  opacity: 0;
+
+  transform:
+    translate3d(0, 45px, 0);
+
+  transition:
+    opacity var(--motion-slow) var(--motion-ease),
+    transform var(--motion-slow) var(--motion-ease);
+
+  will-change:
+    opacity,
+    transform;
+}
+
+
+main > section.is-visible {
+  opacity: 1;
+
+  transform:
+    translate3d(0, 0, 0);
+}
+
+
+/* =========================================================
+   SECTION CHILDREN
+========================================================= */
+
+main > section.is-visible h1,
+main > section.is-visible h2,
+main > section.is-visible h3,
+main > section.is-visible p,
+main > section.is-visible a,
+main > section.is-visible button {
+  animation:
+    globalContentReveal
+    0.8s
+    var(--motion-ease)
+    both;
+}
+
+
+@keyframes globalContentReveal {
+
+  from {
+    opacity: 0;
+
+    transform:
+      translate3d(0, 18px, 0);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translate3d(0, 0, 0);
+  }
+
+}
+
+
+/* =========================================================
+   STAGGER SYSTEM
+========================================================= */
+
+main > section.is-visible
+h1 {
+  animation-delay: 0.08s;
+}
+
+main > section.is-visible
+h2 {
+  animation-delay: 0.08s;
+}
+
+main > section.is-visible
+h3 {
+  animation-delay: 0.14s;
+}
+
+main > section.is-visible
+p {
+  animation-delay: 0.2s;
+}
+
+main > section.is-visible
+a {
+  animation-delay: 0.26s;
+}
+
+main > section.is-visible
+button {
+  animation-delay: 0.26s;
+}
+
+
+/* =========================================================
+   CARDS / PANELS
+========================================================= */
+
+main > section.is-visible
+[class*="card"],
+main > section.is-visible
+[class*="panel"],
+main > section.is-visible
+[class*="item"] {
+  animation:
+    panelReveal
+    0.85s
+    var(--motion-ease)
+    both;
+}
+
+
+@keyframes panelReveal {
+
+  from {
+    opacity: 0;
+
+    transform:
+      translate3d(0, 25px, 0)
+      scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translate3d(0, 0, 0)
+      scale(1);
+  }
+
+}
+
+
+/* =========================================================
+   BUTTON MICRO INTERACTION
+========================================================= */
+
+a,
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+
+a:not([class]),
+button:not([class]) {
+  transition:
+    opacity var(--motion-fast) ease,
+    transform var(--motion-fast) var(--motion-ease);
+}
+
+
+button:hover {
+  transform:
+    translateY(-1px);
+}
+
+
+/* =========================================================
+   IMAGE MOTION
+========================================================= */
+
+img {
+  transition:
+    transform 0.8s var(--motion-ease),
+    opacity 0.8s var(--motion-ease);
+}
+
+
+a:hover img {
+  transform:
+    scale(1.025);
+}
+
+
+/* =========================================================
+   SUBTLE FLOATING MOTION
+========================================================= */
+
+.global-float {
+  animation:
+    globalFloat
+    8s
+    ease-in-out
+    infinite;
+}
+
+
+@keyframes globalFloat {
+
+  0%,
+  100% {
+    transform:
+      translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform:
+      translate3d(0, -10px, 0);
+  }
+
+}
+
+
+/* =========================================================
+   PULSE
+========================================================= */
+
+.global-pulse {
+  animation:
+    globalPulse
+    3s
+    ease-in-out
+    infinite;
+}
+
+
+@keyframes globalPulse {
+
+  0%,
+  100% {
+    opacity: 0.55;
+
+    transform:
+      scale(0.96);
+  }
+
+  50% {
+    opacity: 1;
+
+    transform:
+      scale(1);
+  }
+
+}
+
+
+/* =========================================================
+   TECHNICAL SCAN
+========================================================= */
+
+.global-scan {
+  position: relative;
+
+  overflow: hidden;
+}
+
+
+.global-scan::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  right: 0;
+
+  top: -100%;
+
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(168, 85, 247, 0.5),
+      transparent
+    );
+
+  animation:
+    globalScan
+    5s
+    ease-in-out
+    infinite;
+
+  pointer-events: none;
+}
+
+
+@keyframes globalScan {
+
+  0% {
+    top: -10%;
+    opacity: 0;
+  }
+
+  20% {
+    opacity: 1;
+  }
+
+  70% {
+    opacity: 0.7;
+  }
+
+  100% {
+    top: 110%;
+    opacity: 0;
+  }
+
+}
+
+
+/* =========================================================
+   HOVER LIFT
+========================================================= */
+
+.global-hover-lift {
+  transition:
+    transform 0.45s var(--motion-ease),
+    box-shadow 0.45s var(--motion-ease);
+}
+
+
+.global-hover-lift:hover {
+  transform:
+    translateY(-5px);
+}
+
+
+/* =========================================================
+   PURPLE GLOW
+========================================================= */
+
+.global-glow {
+  transition:
+    box-shadow 0.5s ease;
+}
+
+
+.global-glow:hover {
+  box-shadow:
+    0 0 0 1px rgba(168, 85, 247, 0.08),
+    0 15px 50px rgba(168, 85, 247, 0.08);
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  main > section,
+  main > section.is-visible,
+  main > section.is-visible h1,
+  main > section.is-visible h2,
+  main > section.is-visible h3,
+  main > section.is-visible p,
+  main > section.is-visible a,
+  main > section.is-visible button,
+  main > section.is-visible
+  [class*="card"],
+  main > section.is-visible
+  [class*="panel"],
+  main > section.is-visible
+  [class*="item"] {
+
+    animation: none;
+
+    opacity: 1;
+
+    transform: none;
+
+    transition: none;
+  }
+
+  .global-float,
+  .global-pulse,
+  .global-scan {
+    animation: none;
+  }
+
+  img {
+    transition: none;
+  }
+}
+
+
+/* =========================================================
+   MOBILE MOTION
+========================================================= */
+
+@media (max-width: 600px) {
+
+  main > section {
+    transform:
+      translate3d(0, 25px, 0);
+  }
+
+  main > section.is-visible h1,
+  main > section.is-visible h2,
+  main > section.is-visible h3,
+  main > section.is-visible p,
+  main > section.is-visible a,
+  main > section.is-visible button {
+    animation-duration:
+      0.65s;
+  }
+
+}

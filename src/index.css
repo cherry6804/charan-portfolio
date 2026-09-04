@@ -1,0 +1,327 @@
+/* =========================================================
+   GLOBAL DESIGN SYSTEM
+========================================================= */
+
+:root {
+  --background: #ffffff;
+  --surface: #fafafa;
+  --surface-soft: #f6f5f7;
+
+  --ink: #09090b;
+  --ink-soft: #29262e;
+
+  --muted: #716b78;
+  --muted-light: #96909b;
+
+  --line: rgba(16, 14, 20, 0.085);
+  --line-soft: rgba(16, 14, 20, 0.055);
+
+  --accent: #9b43ff;
+  --accent-soft: rgba(155, 67, 255, 0.08);
+
+  --max-width: 1060px;
+
+  --ease:
+    cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+
+  background:
+    var(--background);
+}
+
+body {
+  margin: 0;
+
+  min-width: 320px;
+
+  background:
+    var(--background);
+
+  color:
+    var(--ink);
+
+  font-family:
+    Inter,
+    ui-sans-serif,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  -webkit-font-smoothing:
+    antialiased;
+
+  text-rendering:
+    optimizeLegibility;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+button {
+  border: 0;
+}
+
+a {
+  color: inherit;
+
+  text-decoration: none;
+}
+
+img {
+  display: block;
+
+  max-width: 100%;
+}
+
+::selection {
+  background:
+    rgba(155, 67, 255, 0.18);
+
+  color:
+    #09090b;
+}
+
+
+/* =========================================================
+   ROOT
+========================================================= */
+
+#root {
+  min-height: 100vh;
+}
+
+.app-shell {
+  position: relative;
+
+  overflow-x: clip;
+}
+
+
+/* =========================================================
+   CONTAINER
+========================================================= */
+
+.container {
+  width:
+    min(
+      calc(100% - 40px),
+      var(--max-width)
+    );
+
+  margin-inline:
+    auto;
+}
+
+
+/* =========================================================
+   SECTION TRANSITION
+========================================================= */
+
+.coming-section {
+  position: relative;
+
+  min-height:
+    80vh;
+
+  display:
+    grid;
+
+  place-items:
+    center;
+
+  overflow: hidden;
+
+  border-top:
+    1px solid var(--line);
+
+  background:
+    #ffffff;
+}
+
+.coming-section::before {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  pointer-events: none;
+
+  opacity: 0.35;
+
+  background-image:
+    linear-gradient(
+      rgba(20, 18, 25, 0.025) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(20, 18, 25, 0.025) 1px,
+      transparent 1px
+    );
+
+  background-size:
+    80px 80px;
+
+  mask-image:
+    radial-gradient(
+      ellipse at center,
+      black,
+      transparent 75%
+    );
+
+  -webkit-mask-image:
+    radial-gradient(
+      ellipse at center,
+      black,
+      transparent 75%
+    );
+}
+
+.coming-section-inner {
+  position: relative;
+
+  width: 100%;
+
+  padding:
+    100px 0;
+}
+
+.coming-section-inner span {
+  display: block;
+
+  margin-bottom:
+    22px;
+
+  color:
+    var(--accent);
+
+  font-size:
+    0.58rem;
+
+  font-weight:
+    700;
+
+  letter-spacing:
+    0.16em;
+}
+
+.coming-section-inner h2 {
+  margin: 0;
+
+  font-size:
+    clamp(
+      4rem,
+      10vw,
+      9rem
+    );
+
+  line-height:
+    0.85;
+
+  letter-spacing:
+    -0.075em;
+}
+
+.coming-section-inner p {
+  margin:
+    30px 0 0;
+
+  color:
+    var(--muted);
+
+  font-size:
+    0.85rem;
+
+  letter-spacing:
+    0.02em;
+}
+
+
+/* =========================================================
+   SCROLLBAR
+========================================================= */
+
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background:
+    #ffffff;
+}
+
+::-webkit-scrollbar-thumb {
+  background:
+    rgba(20, 18, 25, 0.18);
+
+  border-radius:
+    999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background:
+    rgba(155, 67, 255, 0.45);
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 767px) {
+  .container {
+    width:
+      min(
+        calc(100% - 28px),
+        var(--max-width)
+      );
+  }
+
+  .coming-section {
+    min-height:
+      65vh;
+  }
+
+  .coming-section-inner {
+    padding:
+      70px 0;
+  }
+
+  .coming-section-inner h2 {
+    font-size:
+      clamp(
+        3.3rem,
+        17vw,
+        5rem
+      );
+  }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior:
+      auto;
+  }
+}
