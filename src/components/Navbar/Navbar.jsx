@@ -26,7 +26,7 @@ function Navbar() {
 
           <div className="navbar-avatar">
             <img
-              src="/images/profile.jpeg"
+              src={import.meta.env.BASE_URL + "images/profile.jpeg"}
               alt="Charan Appala"
             />
           </div>

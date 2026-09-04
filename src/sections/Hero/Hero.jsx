@@ -101,7 +101,7 @@ function Hero() {
           {/* Main photo */}
           <div className="photo-main">
             <img
-              src="/images/hero-1.jpeg"
+              src={import.meta.env.BASE_URL + "images/hero-1.jpeg"}
               alt="Charan Appala"
             />
 
@@ -124,7 +124,7 @@ function Hero() {
           {/* TOP RIGHT SUPPORTING PHOTO */}
           <div className="photo-secondary photo-secondary-top">
             <img
-              src="/images/hero-cover.png"
+              src={import.meta.env.BASE_URL + "images/hero-cover.png"}
               alt="Charan Appala"
             />
 
@@ -139,7 +139,7 @@ function Hero() {
           {/* BOTTOM LEFT SUPPORTING PHOTO */}
           <div className="photo-secondary photo-secondary-bottom">
             <img
-              src="/images/hero-secondary.jpeg"
+              src={import.meta.env.BASE_URL + "images/hero-secondary.jpeg"}
               alt="Charan Appala"
             />
 
